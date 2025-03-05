@@ -1,0 +1,61 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": "BlazorComponents/BlazorComponents.csproj",
+          "filter": "filterConfig.yml"
+        }
+      ],
+      "allowCompilationErrors": true,
+      "dest": ".artifacts/BlazorComponents.Api",
+      "disableDefaultFilter": false,
+      "disableGitFeatures": false,
+      "includePrivateMembers": false,
+      "namespaceLayout": "flattened",
+      "noRestore": false,
+      "memberLayout": "samePage"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          ".artifacts/BlazorComponents.Api/**.yml",
+          "toc.yml",
+          "*.md"
+        ],
+        "exclude": [
+          "BlazorComponents/node_modules/**/**.md",
+          "BlazorComponents/node_modules/**/**.toc"
+        ]
+      }
+    ],
+
+    "overwrite": [
+      {
+        "files": [
+          ".artifacts/api-metadata/**.md"
+        ]
+      }
+    ],
+    "output": ".artifacts/siteDocFx",
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "template": [
+      "default",
+      "modern"
+    ],
+    "allowcompilationerrors": true,
+    "cleanupCacheHistory": false,
+    "disableContribution": true,
+    "disableGitFeatures": false,
+    "keepFileLink": false,
+    "markdownEngineName": "markdig",
+    "noLangKeyword": false,
+    "postProcessors": [],
+    "xrefService": [
+      "https://xref.docs.microsoft.com/query?uid={uid}"
+    ]
+  }
+}

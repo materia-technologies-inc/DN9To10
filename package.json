@@ -1,0 +1,255 @@
+{
+  "name": "materia-technologies-inc.blazorcomponents",
+  "version": "1.0.0-wip",
+  "author": "MTI",
+  "license": "SEE LICENSE IN License.md",
+  "publishConfig": {
+    "@materia-technologies-inc:registry": "https://npm.pkg.github.com"
+  },
+  "type": "module",
+  "description": "Materia blazor components",
+  "keywords": [
+    "materia",
+    "material",
+    "material design",
+    "design system",
+    "components",
+    "web components",
+    "lit",
+    "blazor"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/materia-technologies-inc/materia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/material-components/material-web/issues"
+  },
+  "homepage": "https://github.com/material-components/material-web#readme",
+  "engines": {
+    "npm": "Please use pnpm to install this package",
+    "pnpm": ">=10.4.1",
+    "yarn": "Please use pnpm to install this package"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@parcel/watcher"
+    ]
+  },
+  "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b",
+  "devDependencies": {
+    "@rollup/plugin-multi-entry": "^6.0.1",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/node": "^22.13.8",
+    "copyfiles": "2.4.1",
+    "json5": "^2.2.3",
+    "rollup": "^4.34.9",
+    "rollup-plugin-summary": "^3.0.0",
+    "sass": "^1.85.1",
+    "typescript": "^5.8.2",
+    "wireit": "^0.14.11"
+  },
+  "scripts": {
+    "build": "wireit",
+    "build-clean-blazor": "wireit",
+    "build-clean-emergency": "tsc -b clean/tsconfig.json --pretty",
+    "clean": "node .clean/clean.js",
+    "compile-package": "json5 -o package.json --space 2 package.json5"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build-website-styles-default"
+      ]
+    },
+    "build-website-styles-default": {
+      "command": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Website/Styles/default-theme.scss Website/wwwroot/generated-content/default-theme.css",
+      "dependencies": [
+        "build-website-styles-alternate"
+      ],
+      "files": [
+        "Website/Styles/*.scss"
+      ],
+      "output": [
+        "Website/wwwroot/generated-content/default-theme.css"
+      ]
+    },
+    "build-website-styles-alternate": {
+      "command": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Website/Styles/alternate-theme.scss Website/wwwroot/generated-content/alternate-theme.css",
+      "dependencies": [
+        "build-website-scripts-rollup"
+      ],
+      "files": [
+        "Website/Styles/BlazorStyles.scss",
+        "Website/Styles/website-resources/*.css"
+      ],
+      "output": [
+        "Website/wwwroot/generated-content/blazor.styles.css"
+      ]
+    },
+    "build-website-scripts-rollup": {
+      "command": "rollup --config rollup.server.config.mjs",
+      "dependencies": [
+        "build-website-scripts"
+      ],
+      "files": [
+        "Website/Scripts/*.js"
+      ],
+      "output": [
+        "Website/wwwroot/generated-content/website.js"
+      ]
+    },
+    "build-website-scripts": {
+      "command": "tsc -b Website/tsconfig.json",
+      "dependencies": [
+        "build-blazor-styles-components-minified"
+      ],
+      "files": [
+        "Website/Scripts/*.ts"
+      ],
+      "output": [
+        "Website/Scripts/*.js"
+      ]
+    },
+    "build-blazor-styles-components-minified": {
+      "command": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map BlazorComponents/Styles/BlazorStyles.scss BlazorComponents/wwwroot/generated-content/blazor.styles.min.css",
+      "dependencies": [
+        "build-blazor-styles-components"
+      ],
+      "files": [
+        "BlazorComponents/Styles/BlazorStyles.scss",
+        "BlazorComponents/Styles/website-resources/*.css"
+      ],
+      "output": [
+        "BlazorComponents/wwwroot/generated-content/blazor.styles.min.css"
+      ]
+    },
+    "build-blazor-styles-components": {
+      "command": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map BlazorComponents/Styles/BlazorStyles.scss BlazorComponents/wwwroot/generated-content/blazor.styles.css",
+      "dependencies": [
+        "minify-scripts-rollup"
+      ],
+      "files": [
+        "BlazorComponents/Styles/BlazorStyles.scss",
+        "BlazorComponents/Styles/website-resources/*.css"
+      ],
+      "output": [
+        "BlazorComponents/wwwroot/generated-content/blazor.styles.css"
+      ]
+    },
+    "minify-scripts-rollup": {
+      "command": "rollup --config rollup.config.min.mjs",
+      "dependencies": [
+        "rollup-scripts"
+      ],
+      "files": [
+        "BlazorScripts/*.js"
+      ],
+      "output": [
+        "BlazorComponents/wwwroot/generated-content/blazor.components.min.js"
+      ]
+    },
+    "rollup-scripts": {
+      "command": "rollup --config rollup.config.mjs",
+      "dependencies": [
+        "build-blazor-scripts-events"
+      ],
+      "files": [
+        "BlazorScripts/*.js"
+      ],
+      "output": [
+        "BlazorComponents/wwwroot/generated-content/blazor.components.js"
+      ]
+    },
+    "build-blazor-scripts-events": {
+      "command": "tsc -b BlazorComponents/EventScripts/tsconfig.json",
+      "dependencies": [
+        "build-blazor-scripts-components"
+      ],
+      "files": [
+        "./tsconfig.json",
+        "BlazorComponents/EventScripts/tsconfig.json",
+        "BlazorComponents/EventScripts/*.ts"
+      ],
+      "output": [
+        "BlazorComponents/wwwroot/*.js"
+      ]
+    },
+    "build-blazor-scripts-components": {
+      "command": "tsc -b BlazorComponents/BlazorScripts/tsconfig.json",
+      "dependencies": [
+        "copy-website-resources"
+      ],
+      "files": [
+        "./tsconfig.json",
+        "BlazorComponents/BlazorScripts/tsconfig.json",
+        "BlazorComponents/BlazorScripts/*.ts"
+      ],
+      "output": [
+        ".destination/*.js"
+      ]
+    },
+    "copy-website-resources": {
+      "command": "copyfiles --error --flat --verbose ../Chameleon/WebComponents/.external-definitions/fouc-control.css ../Chameleon/WebComponents/.external-definitions/material-symbols-outlined.css ../Chameleon/WebComponents/.external-definitions/material-symbols-rounded.css ../Chameleon/WebComponents/.external-definitions/material-symbols-sharp.css ../Chameleon/WebComponents/.external-definitions/roboto.css ../Chameleon/WebComponents/.external-definitions/website.css BlazorComponents/Styles/.website-resources",
+      "dependencies": [
+        "copy-wc-rollup"
+      ],
+      "files": [
+        "../Chameleon/WebComponents/.external-definitions/fouc-control.css",
+        "../Chameleon/WebComponents/.external-definitions/material-symbols-outlined.css",
+        "../Chameleon/WebComponents/.external-definitions/material-symbols-rounded.css",
+        "../Chameleon/WebComponents/.external-definitions/material-symbols-sharp.css",
+        "../Chameleon/WebComponents/.external-definitions/roboto.css",
+        "../Chameleon/WebComponents/.external-definitions/website.css"
+      ],
+      "output": [
+        "BlazorComponents/Styles/.website-resources/*.*"
+      ]
+    },
+    "copy-wc-rollup": {
+      "command": "copyfiles --error --flat --verbose ../Chameleon/WebComponents/.rollup/web-components.* .rollup",
+      "dependencies": [
+        "copy-model-source"
+      ],
+      "files": [
+        "../Chameleon/WebComponents/.rollup/web-components.*"
+      ],
+      "output": [
+        ".rollup/web-components.*"
+      ]
+    },
+    "copy-model-source": {
+      "command": "copyfiles --error --flat --verbose ../Chameleon/WebComponents/.external-definitions/BlazorCeTokens.cs ../Chameleon/WebComponents/.external-definitions/BlazorEnumerationsWC.cs ../Chameleon/WebComponents/.external-definitions/BlazorIntermediateMenu.cs BlazorComponents/Model/Committed-Generated-Content/",
+      "dependencies": [
+        "build-clean-blazor"
+      ],
+      "files": [
+        "../Chameleon/WebComponents/.external-definitions/BlazorCeTokens.cs",
+        "../Chameleon/WebComponents/.external-definitions/BlazorEunmerationsWC.cs"
+      ],
+      "output": [
+        "BlazorComponents/Model/Committed-Generated-Content/BlazorCeTokens.cs",
+        "BlazorComponents/Model/Committed-Generated-Content/BlazorEnumerationsWC.cs",
+        "BlazorComponents/Model/Committed-Generated-Content/BlazorIntermediateMenu.cs"
+      ]
+    },
+    "build-clean-blazor": {
+      "clean": "if-file-deleted",
+      "command": "tsc -b BlazorComponents/clean/tsconfig.json",
+      "files": [
+        "./tsconfig.json",
+        "./tsconfig.node.json",
+        "BlazorComponents/clean/clean.ts",
+        "BlazorComponents/clean/tsconfig.json"
+      ],
+      "output": [
+        ".clean/clean.d.ts",
+        ".clean/clean.d.ts.map",
+        ".clean/clean.js",
+        ".clean/clean.js.map"
+      ]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34707.107
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{2ED898E0-CF3D-4CDD-ACE3-52CF159B6515}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		BuildDev.cmd = BuildDev.cmd
+		Directory.Build.props = Directory.Build.props
+		package.json5 = package.json5
+		rollup.config.min.mjs = rollup.config.min.mjs
+		rollup.config.mjs = rollup.config.mjs
+		rollup.server.config.mjs = rollup.server.config.mjs
+		tsconfig.json = tsconfig.json
+		tsconfig.node.json = tsconfig.node.json
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website", "Website\Website.csproj", "{75D7FCB5-D271-4DB4-8385-693F5D402F63}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.Server", "Website.Server\Website.Server.csproj", "{A0D58E79-BDFB-4D68-8195-A63A991FF79E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentLibrary", "ComponentLibrary\ComponentLibrary.csproj", "{6DF92993-43D6-4A26-8811-2AC2884BF8F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Server|Any CPU = Server|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75D7FCB5-D271-4DB4-8385-693F5D402F63}.Server|Any CPU.ActiveCfg = Server|Any CPU
+		{75D7FCB5-D271-4DB4-8385-693F5D402F63}.Server|Any CPU.Build.0 = Server|Any CPU
+		{A0D58E79-BDFB-4D68-8195-A63A991FF79E}.Server|Any CPU.ActiveCfg = Server|Any CPU
+		{A0D58E79-BDFB-4D68-8195-A63A991FF79E}.Server|Any CPU.Build.0 = Server|Any CPU
+		{6DF92993-43D6-4A26-8811-2AC2884BF8F3}.Server|Any CPU.ActiveCfg = Server|Any CPU
+		{6DF92993-43D6-4A26-8811-2AC2884BF8F3}.Server|Any CPU.Build.0 = Server|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C46C8B6-E974-41BE-8CE2-6B5F04246BC1}
+	EndGlobalSection
+EndGlobal

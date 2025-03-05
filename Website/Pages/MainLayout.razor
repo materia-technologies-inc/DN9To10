@@ -1,0 +1,19 @@
+﻿@inherits LayoutComponentBase
+
+@namespace Website
+
+@inject NavigationManager NavigationService
+@inject IJSRuntime JsRuntime
+
+<div>
+    <main class="main-body" id="main-content">
+        <div class="max-width-content">
+            <div class="chameleon-layout-grid">
+                <div class="chameleon-layout-grid__inner">
+                    @Body
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>

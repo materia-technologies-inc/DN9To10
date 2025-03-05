@@ -1,0 +1,14 @@
+<Project>
+	<PropertyGroup>
+		<AccelerateBuildsInVisualStudio>false</AccelerateBuildsInVisualStudio>
+		<ArtifactsPath>$(MSBuildThisFileDirectory).artifacts</ArtifactsPath>
+		<Configurations>Server</Configurations>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Server'">
+		<DefineConstants>BLAZOR_SERVER,LOGGING</DefineConstants>
+	</PropertyGroup>
+
+</Project>
