@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>false</EmitCompilerGeneratedFiles>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-		<TargetFrameworks>net9.0</TargetFrameworks>
+		<TargetFrameworks>net10.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -19,8 +19,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Markdig" Version="0.40.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0-preview.1.25120.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="10.0.0-preview.1.25120.3" />
 		<PackageReference Include="Humanizer" Version="2.14.1" />
 	</ItemGroup>
 
